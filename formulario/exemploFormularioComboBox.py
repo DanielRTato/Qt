@@ -32,6 +32,7 @@ class exemploFormularioComboBox(QMainWindow):
         caixaV1.addWidget(rbtBoton1)
         caixaV1.addWidget(rbtBoton2)
         caixaV1.addWidget(rbtBoton3)
+
         caixaV1.addWidget(rbtBoton4)
         maia.addLayout(caixaV1, 0, 0, 1, 2)
 
