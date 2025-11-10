@@ -1,7 +1,9 @@
 
 import sys
 from PyQt6.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLineEdit, QApplication, QComboBox, QMainWindow, \
-    QTextEdit, QRadioButton, QButtonGroup
+    QTextEdit, QRadioButton, QButtonGroup, QTableView
+
+from Tabla.modeloTabla import ModeloTabla
 
 
 class exemploFormularioComboBox(QMainWindow):
@@ -13,6 +15,11 @@ class exemploFormularioComboBox(QMainWindow):
         caixaV = QVBoxLayout()
 
         self.nome_dni = [["Ana", "Pepe", "Juan"], ["3333R", "4444S", "5555T"]]
+
+        datos = [["Nome", "DNI", "Genero", "Fallecido"],
+                 ["Ana", "3333R", "Feminino", "Non"],
+                 ["Pepe", "4444S", "Masculino", True],
+                 ["Juan", "5555T", "Masculino", False]]
 
         caixaV1 = QVBoxLayout()
         rbtBoton1 = QRadioButton("Boton1", self)
@@ -28,6 +35,11 @@ class exemploFormularioComboBox(QMainWindow):
         grupo2.addButton(rbtBoton4)
         grupo1.setExclusive(True)
         grupo2.setExclusive(True)
+
+        self.tvwTaboa = QTableView()
+        self.modelo = ModeloTabla(datos)
+        self.tvwTaboa.setModel(self.modelo)
+        maia.addWidget(self.tvwTaboa, 0,1,1,1)
 
         caixaV1.addWidget(rbtBoton1)
         caixaV1.addWidget(rbtBoton2)
