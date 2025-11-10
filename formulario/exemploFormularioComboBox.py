@@ -1,6 +1,8 @@
-# python
+
 import sys
-from PyQt6.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLineEdit, QApplication, QComboBox, QMainWindow, QTextEdit
+from PyQt6.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLineEdit, QApplication, QComboBox, QMainWindow, \
+    QTextEdit, QRadioButton, QButtonGroup
+
 
 class exemploFormularioComboBox(QMainWindow):
     def __init__(self):
@@ -12,6 +14,27 @@ class exemploFormularioComboBox(QMainWindow):
 
         self.nome_dni = [["Ana", "Pepe", "Juan"], ["3333R", "4444S", "5555T"]]
 
+        caixaV1 = QVBoxLayout()
+        rbtBoton1 = QRadioButton("Boton1", self)
+        rbtBoton2 = QRadioButton("Boton2", self)
+        rbtBoton3 = QRadioButton("Boton3", self)
+        rbtBoton4 = QRadioButton("Boton4", self)
+
+        grupo1 = QButtonGroup(self)
+        grupo2 = QButtonGroup(self)
+        grupo1.addButton(rbtBoton1)
+        grupo1.addButton(rbtBoton2)
+        grupo2.addButton(rbtBoton3)
+        grupo2.addButton(rbtBoton4)
+        grupo1.setExclusive(True)
+        grupo2.setExclusive(True)
+
+        caixaV1.addWidget(rbtBoton1)
+        caixaV1.addWidget(rbtBoton2)
+        caixaV1.addWidget(rbtBoton3)
+        caixaV1.addWidget(rbtBoton4)
+        maia.addLayout(caixaV1, 0, 0, 1, 2)
+
         txtCadro1 = QLineEdit()
         txtCadro2 = QLineEdit()
         self.cmbComboBox = QComboBox()
@@ -19,12 +42,11 @@ class exemploFormularioComboBox(QMainWindow):
         self.cmbComboBox.currentIndexChanged.connect(self.on_cmbComboBox_currentIndexChanged)
         self.cmbComboBox.currentTextChanged.connect(self.on_ComboBox_currentTextChanged)
 
-
         caixaV.addWidget(txtCadro1)
         caixaV.addWidget(txtCadro2)
         caixaV.addWidget(self.cmbComboBox)
 
-        maia.addLayout(caixaV,1, 0, 1,1)
+        maia.addLayout(caixaV, 1, 0, 1, 1)
 
         self.txtAreaTexto = QTextEdit()
         maia.addWidget(self.txtAreaTexto, 1, 1, 1, 1)
@@ -35,7 +57,9 @@ class exemploFormularioComboBox(QMainWindow):
 
     def on_cmbComboBox_currentIndexChanged(self, indice):
         print(self.cmbComboBox.currentText())
-        self.txtAreaTexto.setPlainText("Selecionaste el usuario: " + self.cmbComboBox.itemText(indice) + " con dni: " + self.nome_dni[1][indice])
+        self.txtAreaTexto.setPlainText(
+            "Selecionaste el usuario: " + self.cmbComboBox.itemText(indice) + " con dni: " + self.nome_dni[1][indice]
+        )
 
     def on_ComboBox_currentTextChanged(self, texto):
         print("O combo ten seleccionado o texto: " + texto)
