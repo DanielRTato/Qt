@@ -58,6 +58,7 @@ class VentanaPrincipal(QMainWindow):
             self.lblEtiqueta.setText(f"Hola {nome}!")           # Cambia o texto da etiqueta
 
 
+
     def abrirventanahija (self):
         self.close()
         from SegundaVentana import SegundaVentana
