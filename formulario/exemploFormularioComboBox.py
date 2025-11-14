@@ -3,7 +3,7 @@ import sys
 from PyQt6.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLineEdit, QApplication, QComboBox, QMainWindow, \
     QTextEdit, QRadioButton, QButtonGroup, QTableView
 
-from Tabla.modeloTabla import ModeloTabla
+from formulario.modeloTabla import ModeloTabla
 
 
 class exemploFormularioComboBox(QMainWindow):
