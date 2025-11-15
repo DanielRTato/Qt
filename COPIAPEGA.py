@@ -1,7 +1,9 @@
 import sys
+
+from PyQt6.QtCore import QLine
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton, QVBoxLayout, QHBoxLayout,
-    QStackedLayout, QRadioButton, QCheckBox, QLabel, QMainWindow
+    QStackedLayout, QRadioButton, QCheckBox, QLabel, QMainWindow, QLineEdit, QTextEdit
 )
 from PyQt6.QtGui import QColor, QPalette
 
@@ -13,9 +15,6 @@ class Ventana(QMainWindow):
 
         # --- Layout principal ---
         layout_principal = QVBoxLayout()
-
-
-
 
 
 
