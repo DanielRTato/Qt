@@ -19,12 +19,10 @@ class FiestraPrincipal(QMainWindow):
             ["33333", "23/10/2025", "33333", "Rosa", "Sanz"]
         ]
 
-        # --------------------------------------------------------
-        # 1. FORMULARIO (SIN GRID)
-        # --------------------------------------------------------
+
         layout_principal = QVBoxLayout()
 
-        # Nº ALBARÁ
+
         caja_albara = QHBoxLayout()
         caja_albara.addWidget(QLabel("Número de albará:"))
         self.cmbNumero = QComboBox()

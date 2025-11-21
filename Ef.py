@@ -11,23 +11,17 @@ class FiestraPrincipal(QMainWindow):
         super().__init__()
         self.setWindowTitle("Exame 17-11-2025 Grupo A")
 
-        # ============================
-        #   DATOS ALBARÁS
-        # ============================
+
         self.albaras = [
             ["1111nn", "02/11/2024", "1111", "Ana", "Ruiz"],
             ["2222oo", "08/03/2024", "2222", "Pedro", "Diz"],
             ["3333qq", "23/10/2025", "3333", "Rosa", "Sanz"]
         ]
 
-        # ============================
-        #   LAYOUT PRINCIPAL
-        # ============================
+
         layout = QVBoxLayout()
 
-        # ============================
-        #   GROUPBOX CLIENTE
-        # ============================
+
         gpbCliente = QGroupBox("Cliente")
         grid = QGridLayout()
 
@@ -118,9 +112,7 @@ class FiestraPrincipal(QMainWindow):
         # Cargar albarás al combo
         self.cargar_albaras()
 
-    # ==================================================
-    #            FUNCIONES DEL EXAMEN
-    # ==================================================
+
 
     def cargar_albaras(self):
         """Punto 3: cargar los números de albará en el ComboBox"""
