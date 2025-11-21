@@ -63,6 +63,7 @@ class FiestraPrincipal(QMainWindow):
         btnEngadir.clicked.connect(self.btnEngadir_onClick)
         btnEditar = QPushButton("Editar")
         btnBorrar = QPushButton("Borrar")
+        btnBorrar.clicked.connect(self.btn_Borrar_onClick)
 
         layout_botones.addWidget(btnEngadir)
         layout_botones.addWidget(btnEditar)
@@ -152,6 +153,22 @@ class FiestraPrincipal(QMainWindow):
         self.txtDireccion.clear()
         self.txtCidade.clear()
         self.cmbProvincia.setCurrentIndex(-1)
+
+    def btn_Borrar_onClick(self):
+        numero_borrar= self.txtNumeroCliente.text().strip()
+        if numero_borrar == "": # Si no hay número de cliente, no hace nada
+            return
+
+        lineas = self.txeClientes.toPlainText().strip().split("\n")  # Obtemos todo o texto e dividimos en liñas separadas por saltos de liña
+
+        novas = [liña for liña in lineas if liña.split(",")[0].strip() != numero_borrar] # nueva lista sin las líneas que coinciden con el número de cliente
+
+
+        self.txeClientes.setPlainText("\n".join(novas)) # Reescribimos o QTextEdit coas liñas non borradas
+
+        # Limpiamos os controis
+        self.limpiarFormulario()
+
 
 
 if __name__ == "__main__":
