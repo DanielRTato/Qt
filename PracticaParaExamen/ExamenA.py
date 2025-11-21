@@ -29,6 +29,8 @@ class FiestraPrincipal(QMainWindow):
         self.cmbNumeroAlbara = QComboBox()
         self.cmbNumeroAlbara.addItems([albara[0]for albara in self.lista_Albarras]) # Engadir números de albarás ao combo box
         self.cmbNumeroAlbara.setCurrentIndex(-1)  # que no seleccione ningún elemento por defecto
+        self.cmbNumeroAlbara.currentIndexChanged.connect(self.on_cmbNumeroAlbara_changed) # connect selection change to updater
+
 
         self.txtDataAlbara = QLineEdit()
         self.txtNumeroCliente = QLineEdit()
@@ -49,7 +51,7 @@ class FiestraPrincipal(QMainWindow):
         btnAceptar = QPushButton("Aceptar")
         btnAceptar.setDisabled(True) # Botón deshabilitado
         btnCancelar = QPushButton("Cancelar")
-        btnCancelar.clicked.connect(self.btnCancelar_onClick) # Conectar o evento de clic ao método
+        btnCancelar.clicked.connect(self.btnCancelar_onClick) # Conectar o evento de clic a la función
 
         maia.addWidget(lblNumeroAlbara, 0, 0)
         maia.addWidget(self.cmbNumeroAlbara, 0, 1)
@@ -77,8 +79,8 @@ class FiestraPrincipal(QMainWindow):
         layout_abajo = QHBoxLayout()
         layout_abajo.addStretch() # Engadir un espazo flexible á esquerda
 
-        layout_abajo.addWidget(btnAceptar)
         layout_abajo.addWidget(btnCancelar)
+        layout_abajo.addWidget(btnAceptar)
         #layout_abajo.addStretch() # Engadir un espazo flexible á dereita
 
         layout_principal.addLayout(layout_abajo)
@@ -101,6 +103,23 @@ class FiestraPrincipal(QMainWindow):
 
         texto = f" {nAlbara}, {data}, {nCliente}, {nome}, {apell}"
         self.txeCadroTexto.append(texto)
+
+    # rellena los campos según la selección del combo box
+    def on_cmbNumeroAlbara_changed(self, index: int):
+        if index is None or index < 0 or index >= len(self.lista_Albarras): # esto se puede simplificar a "if index < 0:" (creo)
+            # clear fields when nothing selected
+            self.txtDataAlbara.clear()
+            self.txtNumeroCliente.clear()
+            self.txtNomeCliente.clear()
+            self.txtApelidosCliente.clear()
+            return
+
+        albara = self.lista_Albarras[index] # para el índice seleccionado, obtener la albará correspondiente
+        # albara structure: [numero, data, numero_cliente, nome, apelidos]
+        self.txtDataAlbara.setText(albara[1])
+        self.txtNumeroCliente.setText(albara[2])
+        self.txtNomeCliente.setText(albara[3])
+        self.txtApelidosCliente.setText(albara[4])
 
 if __name__ == "__main__":
     aplicacion = QApplication(sys.argv)
