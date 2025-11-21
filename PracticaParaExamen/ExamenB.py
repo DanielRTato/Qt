@@ -87,12 +87,12 @@ class FiestraPrincipal(QMainWindow):
         self.setCentralWidget(container)
 
     def btnEngadir_onClick(self):
-        numero_cliente = self.txtNumeroCliente.text()
-        nome = self.txtNomeCliente.text()
-        apelidos = self.txtApelidosCliente.text()
-        direccion = self.txtDireccion.text()
-        cidade = self.txtCidade.text()
-        provincia = self.cmbProvincia.currentText()
+        numero_cliente = self.txtNumeroCliente.text().strip()
+        nome = self.txtNomeCliente.text().strip()
+        apelidos = self.txtApelidosCliente.text().strip()
+        direccion = self.txtDireccion.text().strip()
+        cidade = self.txtCidade.text().strip()
+        provincia = self.cmbProvincia.currentText().strip()
 
         linea = f"{numero_cliente}, {nome}, {apelidos}, {direccion}, {cidade}, {provincia}"
 
