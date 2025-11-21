@@ -17,12 +17,12 @@ class FiestraPrincipal(QMainWindow):
 
         gpbCliente = QGroupBox("Cliente")
 
-        lblNumeroCliente = QLabel("Número Cliente")
-        lblNomeCliente = QLabel("Nome")
-        lblApelidosCliente = QLabel("Apelidos")
-        lblDirección = QLabel("Dirección")
-        lblCidade = QLabel("Cidade")
-        lblProvinciaEstado = QLabel("Provincia")
+        self.lblNumeroCliente = QLabel("Número Cliente")
+        self.lblNomeCliente = QLabel("Nome")
+        self.lblApelidosCliente = QLabel("Apelidos")
+        self.lblDireccion = QLabel("Dirección")
+        self.lblCidade = QLabel("Cidade")
+        self.lblProvinciaEstado = QLabel("Provincia")
 
         self.txtNumeroCliente = QLineEdit()
         self.txtNomeCliente = QLineEdit()
@@ -34,17 +34,17 @@ class FiestraPrincipal(QMainWindow):
         self.cmbProvincia.addItems(self.lista_provincias) # Engadir provincias ao combo box
         self.cmbProvincia.setCurrentIndex(-1) # que no seleccione ningún elemento por defecto
 
-        maia.addWidget(lblNumeroCliente, 0, 0)
+        maia.addWidget(self.lblNumeroCliente, 0, 0)
         maia.addWidget(self.txtNumeroCliente, 0, 1)
-        maia.addWidget(lblNomeCliente, 0, 2)
+        maia.addWidget(self.lblNomeCliente, 0, 2)
         maia.addWidget(self.txtNomeCliente, 0, 3)
-        maia.addWidget(lblApelidosCliente, 1, 0)
+        maia.addWidget(self.lblApelidosCliente, 1, 0)
         maia.addWidget(self.txtApelidosCliente, 1, 1, 1, 3)
-        maia.addWidget(lblDirección, 2, 0)
+        maia.addWidget(self.lblDireccion, 2, 0)
         maia.addWidget(self.txtDireccion, 2, 1, 1, 3)
-        maia.addWidget(lblCidade, 3, 0)
+        maia.addWidget(self.lblCidade, 3, 0)
         maia.addWidget(self.txtCidade, 3, 1)
-        maia.addWidget(lblProvinciaEstado, 3, 2)
+        maia.addWidget(self.lblProvinciaEstado, 3, 2)
         maia.addWidget(self.cmbProvincia, 3, 3)
 
         gpbCliente.setLayout(maia)
@@ -87,6 +87,11 @@ class FiestraPrincipal(QMainWindow):
         self.setCentralWidget(container)
 
     def btnEngadir_onClick(self):
+
+        if not self.comprobarCampos():
+            return
+
+
         numero_cliente = self.txtNumeroCliente.text().strip()
         nome = self.txtNomeCliente.text().strip()
         apelidos = self.txtApelidosCliente.text().strip()
@@ -99,14 +104,54 @@ class FiestraPrincipal(QMainWindow):
         self.txeClientes.append(linea)
         self.limpiarFormulario()
 
+    def comprobarCampos(self):
+        todo_cuberto = True  # al principio asumimos que todos los campos están completos y si no se cambia en el proceso
+
+        if self.txtNumeroCliente.text().strip() == "":
+            self.lblNumeroCliente.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblNumeroCliente.setStyleSheet("color: black;")
+
+        if self.txtNomeCliente.text().strip() == "":
+            self.lblNomeCliente.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblNomeCliente.setStyleSheet("color: black;")
+
+        if self.txtApelidosCliente.text().strip() == "":
+            self.lblApelidosCliente.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblApelidosCliente.setStyleSheet("color: black;")
+
+        if self.txtDireccion.text().strip() == "":
+            self.lblDireccion.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblDireccion.setStyleSheet("color: black;")
+
+        if self.txtCidade.text().strip() == "":
+            self.lblCidade.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblCidade.setStyleSheet("color: black;")
+
+        if self.cmbProvincia.currentIndex() == -1:
+            self.lblProvinciaEstado.setStyleSheet("color: red;")
+            todo_cuberto = False
+        else:
+            self.lblProvinciaEstado.setStyleSheet("color: black;")
+
+        return todo_cuberto
+
     def limpiarFormulario(self):
         self.txtNumeroCliente.clear()
         self.txtNomeCliente.clear()
         self.txtApelidosCliente.clear()
         self.txtDireccion.clear()
         self.txtCidade.clear()
-        self.cmbProvincia.setCurrentIndex(-1) # Deseleccionar o combo box
-
+        self.cmbProvincia.setCurrentIndex(-1)
 
 
 if __name__ == "__main__":
@@ -114,5 +159,3 @@ if __name__ == "__main__":
     fiestra = FiestraPrincipal()
     fiestra.show()
     sys.exit(aplicacion.exec())
-
-    aplicacion.exec()
