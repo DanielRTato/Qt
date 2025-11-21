@@ -97,11 +97,17 @@ class FiestraPrincipal(QMainWindow):
 
     # función que se ejecuta al hacer clic en el botón "Editar"
     def onClick_btnEditar(self):
+        # comprobar que hay un albará seleccionado si no es así, salir de la función
+        if self.cmbNumeroAlbara.currentIndex() < 0:
+            return
+
         nAlbara = self.cmbNumeroAlbara.currentText() # obtener el número de albará seleccionado
         data = self.txtDataAlbara.text() # convertir a texto los campos
         nCliente = self.txtNumeroCliente.text()
         nome = self.txtNomeCliente.text()
         apell = self.txtApelidosCliente.text()
+
+
 
         linea = f"{nAlbara}, {data}, {nCliente}, {nome}, {apell}"
         self.txeCadroTexto.append(linea)
