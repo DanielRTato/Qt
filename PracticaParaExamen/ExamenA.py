@@ -38,8 +38,9 @@ class FiestraPrincipal(QMainWindow):
         self.txtApelidosCliente = QLineEdit()
 
         btnEngadir = QPushButton("Engadir")
-        btnEngadir.clicked.connect(self.onClick_btnEngadir)
         btnEditar = QPushButton("Editar")
+        btnEditar.clicked.connect(self.onClick_btnEditar) # conectar o evento de clic a unha función
+
         btnBorrar = QPushButton("Borrar")
 
         txtCodigoProducto = QLineEdit()
@@ -94,15 +95,18 @@ class FiestraPrincipal(QMainWindow):
     def btnCancelar_onClick(self):
         self.close()
 
-    def onClick_btnEngadir(self):
-        nAlbara = self.cmbNumeroAlbara.currentText()
-        data = self.txtDataAlbara.text()
+    # función que se ejecuta al hacer clic en el botón "Editar"
+    def onClick_btnEditar(self):
+        nAlbara = self.cmbNumeroAlbara.currentText() # obtener el número de albará seleccionado
+        data = self.txtDataAlbara.text() # convertir a texto los campos
         nCliente = self.txtNumeroCliente.text()
         nome = self.txtNomeCliente.text()
         apell = self.txtApelidosCliente.text()
 
-        texto = f" {nAlbara}, {data}, {nCliente}, {nome}, {apell}"
-        self.txeCadroTexto.append(texto)
+        linea = f"{nAlbara}, {data}, {nCliente}, {nome}, {apell}"
+        self.txeCadroTexto.append(linea)
+
+
 
     # rellena los campos según la selección del combo box
     def on_cmbNumeroAlbara_changed(self, index: int):
