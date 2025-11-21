@@ -11,9 +11,8 @@ class FiestraPrincipal(QMainWindow):
 
         layout_principal = QVBoxLayout()
         maia = QGridLayout()
-        maia_medio = QGridLayout()
 
-
+        self.lista_provincias = ["A Coruña", "Lugo", "Ourense", "Pontevedra"] # Lista de provincias
 
 
         gpbCliente = QGroupBox("Cliente")
@@ -30,7 +29,10 @@ class FiestraPrincipal(QMainWindow):
         txtApelidosCliente = QLineEdit()
         txtDireccion = QLineEdit()
         txtCidade = QLineEdit()
+
         cmbProvincia = QComboBox()
+        cmbProvincia.addItems(self.lista_provincias) # Engadir provincias ao combo box
+        cmbProvincia.setCurrentIndex(-1) # que no seleccione ningún elemento por defecto
 
         maia.addWidget(lblNumeroCliente, 0, 0)
         maia.addWidget(txtNumeroCliente, 0, 1)
