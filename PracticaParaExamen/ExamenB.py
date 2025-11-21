@@ -24,28 +24,28 @@ class FiestraPrincipal(QMainWindow):
         lblCidade = QLabel("Cidade")
         lblProvinciaEstado = QLabel("Provincia")
 
-        txtNumeroCliente = QLineEdit()
-        txtNomeCliente = QLineEdit()
-        txtApelidosCliente = QLineEdit()
-        txtDireccion = QLineEdit()
-        txtCidade = QLineEdit()
+        self.txtNumeroCliente = QLineEdit()
+        self.txtNomeCliente = QLineEdit()
+        self.txtApelidosCliente = QLineEdit()
+        self.txtDireccion = QLineEdit()
+        self.txtCidade = QLineEdit()
 
-        cmbProvincia = QComboBox()
-        cmbProvincia.addItems(self.lista_provincias) # Engadir provincias ao combo box
-        cmbProvincia.setCurrentIndex(-1) # que no seleccione ningún elemento por defecto
+        self.cmbProvincia = QComboBox()
+        self.cmbProvincia.addItems(self.lista_provincias) # Engadir provincias ao combo box
+        self.cmbProvincia.setCurrentIndex(-1) # que no seleccione ningún elemento por defecto
 
         maia.addWidget(lblNumeroCliente, 0, 0)
-        maia.addWidget(txtNumeroCliente, 0, 1)
+        maia.addWidget(self.txtNumeroCliente, 0, 1)
         maia.addWidget(lblNomeCliente, 0, 2)
-        maia.addWidget(txtNomeCliente, 0, 3)
+        maia.addWidget(self.txtNomeCliente, 0, 3)
         maia.addWidget(lblApelidosCliente, 1, 0)
-        maia.addWidget(txtApelidosCliente, 1, 1, 1, 3)
+        maia.addWidget(self.txtApelidosCliente, 1, 1, 1, 3)
         maia.addWidget(lblDirección, 2, 0)
-        maia.addWidget(txtDireccion, 2, 1, 1, 3)
+        maia.addWidget(self.txtDireccion, 2, 1, 1, 3)
         maia.addWidget(lblCidade, 3, 0)
-        maia.addWidget(txtCidade, 3, 1)
+        maia.addWidget(self.txtCidade, 3, 1)
         maia.addWidget(lblProvinciaEstado, 3, 2)
-        maia.addWidget(cmbProvincia, 3, 3)
+        maia.addWidget(self.cmbProvincia, 3, 3)
 
         gpbCliente.setLayout(maia)
         layout_principal.addWidget(gpbCliente)
@@ -60,6 +60,7 @@ class FiestraPrincipal(QMainWindow):
         layout_botones = QVBoxLayout()
 
         btnEngadir = QPushButton("Engadir")
+        btnEngadir.clicked.connect(self.btnEngadir_onClick)
         btnEditar = QPushButton("Editar")
         btnBorrar = QPushButton("Borrar")
 
@@ -81,14 +82,31 @@ class FiestraPrincipal(QMainWindow):
         layout_abajo.addWidget(btnAceptar)
 
 
-
-
-
-
-
         container = QWidget()
         container.setLayout(layout_principal)
         self.setCentralWidget(container)
+
+    def btnEngadir_onClick(self):
+        numero_cliente = self.txtNumeroCliente.text()
+        nome = self.txtNomeCliente.text()
+        apelidos = self.txtApelidosCliente.text()
+        direccion = self.txtDireccion.text()
+        cidade = self.txtCidade.text()
+        provincia = self.cmbProvincia.currentText()
+
+        linea = f"{numero_cliente}, {nome}, {apelidos}, {direccion}, {cidade}, {provincia}"
+
+        self.txeClientes.append(linea)
+        self.limpiarFormulario()
+
+    def limpiarFormulario(self):
+        self.txtNumeroCliente.clear()
+        self.txtNomeCliente.clear()
+        self.txtApelidosCliente.clear()
+        self.txtDireccion.clear()
+        self.txtCidade.clear()
+        self.cmbProvincia.setCurrentIndex(-1) # Deseleccionar o combo box
+
 
 
 if __name__ == "__main__":
