@@ -99,7 +99,7 @@ class FiestraPrincipal(QMainWindow):
         nome = self.txtNomeCliente.text()
         apell = self.txtApelidosCliente.text()
 
-        texto = {f" {nAlbara}, {data}, {nCliente}, {nome}, {apell}"}
+        texto = f" {nAlbara}, {data}, {nCliente}, {nome}, {apell}"
         self.txeCadroTexto.append(texto)
 
 if __name__ == "__main__":
