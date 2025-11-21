@@ -11,6 +11,10 @@ class FiestraPrincipal(QMainWindow):
 
         layout_principal = QVBoxLayout()
         maia = QGridLayout()
+        maia_medio = QGridLayout()
+
+
+
 
         gpbCliente = QGroupBox("Cliente")
 
@@ -44,15 +48,40 @@ class FiestraPrincipal(QMainWindow):
         gpbCliente.setLayout(maia)
         layout_principal.addWidget(gpbCliente)
 
+        layout_medio = QHBoxLayout()
+        layout_principal.addLayout(layout_medio)
+
 
         self.txeClientes = QTextEdit()
+        layout_medio.addWidget(self.txeClientes)
+
+        layout_botones = QVBoxLayout()
 
         btnEngadir = QPushButton("Engadir")
         btnEditar = QPushButton("Editar")
         btnBorrar = QPushButton("Borrar")
 
+        layout_botones.addWidget(btnEngadir)
+        layout_botones.addWidget(btnEditar)
+        layout_botones.addWidget(btnBorrar)
+        layout_botones.addStretch() # Engadir un espazo flexible para empurrar os botóns cara arriba
+
+        layout_medio.addLayout(layout_botones)
+
+
+        layout_abajo = QHBoxLayout()
+        layout_principal.addLayout(layout_abajo)
+        layout_abajo.addStretch() # Engadir un espazo flexible á esquerda
+
         btnAceptar = QPushButton("Aceptar")
         btnCancelar = QPushButton("Cancelar")
+        layout_abajo.addWidget(btnCancelar)
+        layout_abajo.addWidget(btnAceptar)
+
+
+
+
+
 
 
         container = QWidget()
