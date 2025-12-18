@@ -1,9 +1,9 @@
 import sys
-from PySide6.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QTabWidget, QSplitter, QLabel, QPushButton, QListWidget, QGroupBox
-)
-from PySide6.QtCore import Qt
+from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtWidgets import (QApplication, QMainWindow, QGridLayout, QVBoxLayout, QHBoxLayout, QWidget,
+                             QLabel, QListWidget, QPushButton, QComboBox, QLineEdit,
+                             QRadioButton, QGroupBox, QTableView, QAbstractItemView, QTabWidget, QCheckBox, QSlider)
 
 class InterfazAvanzada(QMainWindow):
     def __init__(self):
@@ -16,7 +16,7 @@ class InterfazAvanzada(QMainWindow):
         main_layout = QVBoxLayout(central_widget)
 
         #QSplitter, divisor principal horizontal
-        self.main_splitter = QSplitter(Qt.Horizontal)
+        self.main_splitter = QSlider(Qt.Horizontal)
 
         #Panel izquierdo, control
         control_panel = QGroupBox("Panel de control")

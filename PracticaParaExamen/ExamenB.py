@@ -92,7 +92,6 @@ class FiestraPrincipal(QMainWindow):
         if not self.comprobarCampos():
             return
 
-
         numero_cliente = self.txtNumeroCliente.text().strip()
         nome = self.txtNomeCliente.text().strip()
         apelidos = self.txtApelidosCliente.text().strip()

@@ -4,7 +4,7 @@ import random
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QPushButton, QVBoxLayout, QLabel,
-    QMainWindow, QLineEdit, QSlider, QFrame
+    QMainWindow, QLineEdit, QSlider, QFrame, QTextEdit
 )
 
 
@@ -18,7 +18,7 @@ class Ventana(QMainWindow):
         layout.setContentsMargins(30, 20, 30, 20)  # Márxenes
 
         # ----- LONXITUDE -----
-        self.lbl_lonxitude = QLabel("Lonxitude: 12")
+        self.lbl_lonxitude = QTextEdit()
         self.lbl_lonxitude.setStyleSheet("font-size: 14px;")
 
         self.slider_lonxitude = QSlider(Qt.Orientation.Horizontal)
