@@ -31,9 +31,11 @@ border-color: red;
         sbpSpin.setRange(0, 9999)
         caixaV.addWidget(sbpSpin)
 
-        txtTexto = QLineEdit()
-        txtTexto.setObjectName("editorTxt")
-        caixaV.addWidget(txtTexto)
+        self.txtTexto = QLineEdit()
+        self.txtTexto.setObjectName("editorTxt")
+        self.txtTexto.textChanged.connect(self.on_txtTexto_textChanged)
+
+        caixaV.addWidget(self.txtTexto)
 
         btnBoton = QPushButton("Pulsa")
         caixaV.addWidget(btnBoton)
@@ -47,6 +49,16 @@ border-color: red;
     def on_pteEditor_textChanged(self):
         qss = self.pteEditor.toPlainText()
         self.setStyleSheet(qss)
+
+    def on_txtTexto_textChanged(self):
+        longitud = len(self.txtTexto.text())
+        if longitud <= 6:
+            self.txtTexto.setStyleSheet("QLineEdit {background-color: rgb(120, 0, 0);}")
+        elif longitud > 6 and longitud <= 10:
+            self.txtTexto.setStyleSheet("QLineEdit {background-color: rgb(255, 191, 0);}")
+        elif longitud > 10:
+            self.txtTexto.setStyleSheet("QLineEdit {background-color: rgb(0, 120, 0);}")
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
